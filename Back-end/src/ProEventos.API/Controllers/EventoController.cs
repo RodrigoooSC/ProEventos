@@ -31,7 +31,7 @@ namespace ProEventos.API.Controllers
               Local = "São Bernardo do Campo",
               Lote = "2º Lote",
               QntPessoas = 350,
-              DataEvento= DateTime.Now.AddDays(5).ToString("dd/MM/yyyy"),
+              DataEvento = DateTime.Now.AddDays(5).ToString("dd/MM/yyyy"),
               ImagemURL = "Imagem.png"
             }
         };
