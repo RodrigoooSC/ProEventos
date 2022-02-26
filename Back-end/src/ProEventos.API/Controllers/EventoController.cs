@@ -13,7 +13,7 @@ namespace ProEventos.API.Controllers
     public class EventoController : ControllerBase
     {  
         public IEnumerable<Evento> _evento = new Evento[]
-        {
+        { 
            new Evento()
               {
               EventoId = 1,

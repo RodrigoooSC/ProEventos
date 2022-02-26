@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProEventos.API.Data;
 
 namespace ProEventos.API
 {
@@ -27,6 +28,9 @@ namespace ProEventos.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<DataContext>(
+                context =>context.UseSqlite(Configuration.GetConnectionString("Default"))
+            );
             services.AddControllers(); // Trabalhando com o Padrão de arquitetura MVC
             services.AddSwaggerGen(c =>
             {
