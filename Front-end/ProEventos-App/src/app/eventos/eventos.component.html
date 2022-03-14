@@ -1,42 +1,59 @@
 <h2>Eventos</h2>
-
 <hr>
-
 <form class="row row-cols-lg-auto g-3 align-items-center" action="">
   <div>
     <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="buscar" />
+      <input type="text" class="form-control" placeholder="Buscar" />
     </div>
   </div>
   <div>
-    <button type="submit" class="btn btn-outline-success">Buscar</button>
+    <button type="submit" class="btn btn-success">Buscar</button>
   </div>
 </form>
-
-<hr>
-
-<table class="table">
-  <thead class="table-dark">
-    <tr>
-      <th class="text-center" scope="col">#</th>
-      <th class="text-center" scope="col">Imagem</th>
-      <th class="text-center" scope="col">Tema</th>
-      <th class="text-center" scope="col">Data</th>
-      <th class="text-center" scope="col">Qtd Pessoas</th>
-      <th class="text-center" scope="col">Lote</th>
-      <th class="text-center" scope="col">Opções</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th class="text-center" scope="row">1</th>
-      <td class="text-center">A</td>
-      <td class="text-center">B</td>
-      <td class="text-center">C</td>
-      <td class="text-center">D</td>
-      <td class="text-center">E</td>
-      <td class="text-center">F</td>
-    </tr>
-  </tbody>
-</table>
+<br>
+<!-- <div class="table-responsive"> -->
+  <!-- <table class="table table-striped align-middle table-hover table-bordered"></table> -->
+  <table class="table table-striped align-middle table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th class="text-center" scope="col">
+          <!-- Interpolação com condição para mostrar imagens -->
+          <button type="button" class="btn btn-outline-light btn-sm"
+            (click)="exibirImagem()">{{!displayImg ? 'Exibir' : 'Ocultar'}}</button>
+        </th>
+        <th class="text-center" scope="col">#</th>
+        <th class="text-center" scope="col">Tema</th>
+        <th class="text-center" scope="col">Local</th>
+        <th class="text-center" scope="col">Data</th>
+        <th class="text-center" scope="col">Qtd Pessoas</th>
+        <th class="text-center" scope="col">Lote</th>
+        <th class="text-center" scope="col">Opções</th>
+      </tr>
+    </thead>
+    <!-- Se possuir eventos cadastrados -->
+    <tbody *ngIf="eventos && eventos.length">
+      <tr *ngFor="let evento of eventos">
+        <td class="text-center">
+          <img class="rounded mx-auto img-thumbnail"  [collapse]="!displayImg" [isAnimated]="true"  src="/assets/{{evento.imagemURL}}" [style.width.px]="widthImg"
+            [style.margin.px]="marginImg" />
+        </td>
+        <td class="text-center">{{evento.eventoId}}</td>
+        <td class="text-center">{{evento.tema}}</td>
+        <td class="text-center">{{evento.local}}</td>
+        <td class="text-center">{{evento.dataEvento}}</td>
+        <td class="text-center">{{evento.qntPessoas}}</td>
+        <td class="text-center">{{evento.lote}}</td>
+        <td class="text-center">{{evento.lote}}</td>
+      </tr>
+    </tbody>
+    <!-- Se não possuir eventos cadastrados -->
+    <tfoot *ngIf="!eventos.length">
+      <tr>
+        <td colspan="8">
+          <h4 class="text-center">Nenhum evento encontrado!</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+<!-- </div> -->
