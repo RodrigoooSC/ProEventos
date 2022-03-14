@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-
+  isCollapsed = true; // Começar com o Toggle collapse fechado
   constructor() { }
 
   ngOnInit() {
