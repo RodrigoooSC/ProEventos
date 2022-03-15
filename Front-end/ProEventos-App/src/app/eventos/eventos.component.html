@@ -1,19 +1,21 @@
 <h2>Eventos</h2>
 <hr>
-<form class="row row-cols-lg-auto g-3 align-items-center" action="">
+<!-- <form class="row row-cols-lg-auto g-3 align-items-center" action=""> -->
+  <div class="row row-cols-lg-auto g-3 align-items-center">
   <div>
     <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Buscar" />
+      <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtroLista" />
     </div>
-  </div>
+  </div>  
   <div>
     <button type="submit" class="btn btn-success">Buscar</button>
   </div>
-</form>
+</div>
+<!-- </form> -->
+<h4>Filtro: {{filtroLista}}</h4>
 <br>
-<!-- <div class="table-responsive"> -->
-  <!-- <table class="table table-striped align-middle table-hover table-bordered"></table> -->
+<div class="table-responsive">
   <table class="table table-striped align-middle table-hover table-bordered">
     <thead class="table-dark">
       <tr>
@@ -32,12 +34,15 @@
       </tr>
     </thead>
     <!-- Se possuir eventos cadastrados -->
+    <!-- Diretivas Estruturais -->
     <tbody *ngIf="eventos && eventos.length">
       <tr *ngFor="let evento of eventos">
+        <!-- Properties Bindings -->
         <td class="text-center">
           <img class="rounded mx-auto img-thumbnail"  [collapse]="!displayImg" [isAnimated]="true"  src="/assets/{{evento.imagemURL}}" [style.width.px]="widthImg"
             [style.margin.px]="marginImg" />
         </td>
+        <!-- Interpolação -->
         <td class="text-center">{{evento.eventoId}}</td>
         <td class="text-center">{{evento.tema}}</td>
         <td class="text-center">{{evento.local}}</td>
@@ -56,4 +61,4 @@
       </tr>
     </tfoot>
   </table>
-<!-- </div> -->
+</div>

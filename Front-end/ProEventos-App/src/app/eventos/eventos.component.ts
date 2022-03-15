@@ -18,12 +18,14 @@ export class EventosComponent implements OnInit {
  // Mostrar imagem
  displayImg: boolean = true;
 
+ filtroLista: string = ' ';
+
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getEventos();
-    
+
   }
 
   exibirImagem() {
