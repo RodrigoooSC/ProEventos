@@ -36,7 +36,7 @@
     <!-- Se possuir eventos cadastrados -->
     <!-- Diretivas Estruturais -->
     <tbody *ngIf="eventos && eventos.length">
-      <tr *ngFor="let evento of eventos">
+      <tr *ngFor="let evento of eventosFiltrados">
         <!-- Properties Bindings -->
         <td class="text-center">
           <img class="rounded mx-auto img-thumbnail"  [collapse]="!displayImg" [isAnimated]="true"  src="/assets/{{evento.imagemURL}}" [style.width.px]="widthImg"
