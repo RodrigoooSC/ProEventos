@@ -1,19 +1,14 @@
 <h2>Eventos</h2>
 <hr>
 <!-- <form class="row row-cols-lg-auto g-3 align-items-center" action=""> -->
-  <div class="row row-cols-lg-auto g-3 align-items-center">
-  <div>
-    <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
-    <div class="input-group">
+  <div class="row row-cols-lg-auto g-3 align-items-center">    
+    <div class="input-group mb-3">
+      <span class="input-group-text">Filtro</span>
       <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtroLista" />
-    </div>
-  </div>  
-  <div>
-    <button type="submit" class="btn btn-success">Buscar</button>
-  </div>
+    </div> 
 </div>
 <!-- </form> -->
-<h4>Filtro: {{filtroLista}}</h4>
+<!-- <h4>Filtro: {{filtroLista}}</h4> -->
 <br>
 <div class="table-responsive">
   <table class="table table-striped align-middle table-hover table-bordered">
@@ -49,7 +44,12 @@
         <td class="text-center">{{evento.dataEvento}}</td>
         <td class="text-center">{{evento.qntPessoas}}</td>
         <td class="text-center">{{evento.lote}}</td>
-        <td class="text-center">{{evento.lote}}</td>
+        <td class="text-center">
+          <div class="d-grid gap-2 btn-group-vertical">
+          <button type="button" class="btn btn-primary btn-sm">Editar</button>
+          <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+          </div>
+        </td>
       </tr>
     </tbody>
     <!-- Se não possuir eventos cadastrados -->
