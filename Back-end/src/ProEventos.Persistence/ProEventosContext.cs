@@ -21,7 +21,7 @@ namespace ProEventos.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Faz associação do ID de evento e palestrante, quando a classe for criada no BD ela vai ser a junção de ambos
+            // Faz associação do ID de evento/palestrante - quando a classe for criada no BD ela vai ser a junção de ambos
             modelBuilder.Entity<PalestranteEvento>().
             HasKey(PE => new { PE.EventoId, PE.PalestranteId });
         }
