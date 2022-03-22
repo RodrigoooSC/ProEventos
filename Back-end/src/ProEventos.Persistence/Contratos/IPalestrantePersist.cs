@@ -8,10 +8,10 @@ namespace ProEventos.Persistence.Contratos
         // Métodos Palestrantes - Seleciona palestrante por nome, todos palestrantes e palestrante por id
         // bool includeEventos - pergunta se deseja chamar o evento
 
-        Task<Palestrante[]> GetAllPalestrantesByNomeAsync(string Nome, bool includeEventos);
+        Task<Palestrante[]> GetAllPalestrantesByNomeAsync(string nome, bool includeEventos);
 
         Task<Palestrante[]> GetAllPalestrantesAsync(bool includeEventos);
 
-        Task<Palestrante> GetAllPalestranteByIdAsync(int PalestranteId, bool includeEventos);
+        Task<Palestrante> GetAllPalestranteByIdAsync(int palestranteId, bool includeEventos);
     }
 }

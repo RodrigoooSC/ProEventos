@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProEventos.Domain;
+using ProEventos.Persistence.Contextos;
 using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Persistence
@@ -49,7 +50,7 @@ namespace ProEventos.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Palestrante> GetAllPalestranteByIdAsync(int PalestranteId, bool includeEventos = false)
+        public async Task<Palestrante> GetAllPalestranteByIdAsync(int palestranteId, bool includeEventos = false)
         {
             IQueryable<Palestrante> query = _context.Palestrantes
             .Include(p => p.RedesSociais);
@@ -61,7 +62,7 @@ namespace ProEventos.Persistence
                 .ThenInclude(pe => pe.Evento);
             }
 
-            query = query.OrderBy(p => p.Id).Where(p => p.Id == PalestranteId);
+            query = query.OrderBy(p => p.Id).Where(p => p.Id == palestranteId);
 
             return await query.FirstOrDefaultAsync();
         }
