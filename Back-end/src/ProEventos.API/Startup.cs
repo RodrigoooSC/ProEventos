@@ -6,6 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ProEventos.Persistence.Contextos;
+using ProEventos.Application.Contratos;
+using ProEventos.Application;
+using ProEventos.Persistence.Contratos;
+using ProEventos.Persistence;
 
 namespace ProEventos.API
 {
@@ -23,9 +27,14 @@ namespace ProEventos.API
         {
 
             services.AddDbContext<ProEventosContext>(
-                context =>context.UseSqlite(Configuration.GetConnectionString("Default"))
+                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
             services.AddControllers(); // Trabalhando com o Padrão de arquitetura MVC
+
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IEventoPersist, EventoPersist>();
+
             services.AddCors(); // Adicionando permissão de acesso a API
             services.AddSwaggerGen(c =>
             {
