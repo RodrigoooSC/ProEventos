@@ -17,7 +17,9 @@
         <th class="text-center" scope="col">
           <!-- Interpolação com condição para mostrar imagens -->
           <button type="button" class="btn btn-outline-light btn-sm"
-            (click)="exibirImagem()">{{!displayImg ? 'Exibir' : 'Ocultar'}}</button>
+            (click)="exibirImagem()">
+            <i class="{{!displayImg ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
+            {{!displayImg ? 'Exibir' : 'Ocultar'}}</button>
         </th>
         <th class="text-center" scope="col">#</th>
         <th class="text-center" scope="col">Tema</th>
@@ -41,13 +43,17 @@
         <td class="text-center">{{evento.id}}</td>
         <td class="text-center">{{evento.tema}}</td>
         <td class="text-center">{{evento.local}}</td>
-        <td class="text-center">{{evento.dataEvento}}</td>
+        <td class="text-center">{{evento.dataEvento | DateFormatPipe}}</td>
         <td class="text-center">{{evento.qntPessoas}}</td>
-        <td class="text-center">{{evento.lotes}}</td>
+        <td class="text-center">{{evento.lotes[0].nome}}</td>
         <td class="text-center">
           <div class="d-grid gap-2 btn-group-vertical">
-          <button type="button" class="btn btn-primary btn-sm">Editar</button>
-          <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+          <button type="button" class="btn btn-primary btn-sm">
+            <i class="fa fa-edit"></i>
+            Editar</button>
+          <button type="button" class="btn btn-danger btn-sm">
+            <i class="fa fa-trash"></i>
+            Excluir</button>
           </div>
         </td>
       </tr>
