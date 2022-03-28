@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Evento } from '../models/Evento';
 import { EventoService } from '../services/evento.service';
 
 @Component({
@@ -9,17 +10,17 @@ import { EventoService } from '../services/evento.service';
 })
 export class EventosComponent implements OnInit {
 
-  // Possui elementos vazios - array
-  public eventos: any = [];
-  public eventosFiltrados: any = [];
+// Possui elementos vazios - array
+public eventos: Evento[] = [];
+public eventosFiltrados: Evento[] = [];
 
  // ---- PROPERTY BINDING --- //
  // Definir tamanho de imagem
- widthImg: number = 150;
+ public widthImg: number = 150;
  // Definir margem da imagem
- marginImg: number = 2;
+ public marginImg: number = 2;
  // Mostrar imagem
- displayImg: boolean = true;
+ public displayImg: boolean = true;
 
  private _filtroLista: string = '';
 
@@ -32,29 +33,28 @@ export class EventosComponent implements OnInit {
   this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
 }
 
-filtrarEventos(filtrarPor: string) : any {
+public filtrarEventos(filtrarPor: string) : Evento[] {
   filtrarPor = filtrarPor.toLocaleLowerCase();
-  return this.eventos.filter((evento: any) => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -  1 ||
-  evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -  1  ||
-  evento.dataEvento.toLocaleLowerCase().indexOf(filtrarPor) !== -  1
+  return this.eventos.filter(evento => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -  1 ||
+  evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -  1
   );
 }
 
   constructor(private eventoService : EventoService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.getEventos();
 
   }
 
-  exibirImagem() {
+  public exibirImagem(): void {
     this.displayImg = !this.displayImg;
   }
 
   public getEventos(): void{
     this.eventoService.getEventos().subscribe(
-    response => {
-      this.eventos = response;
+    (_eventos: Evento[] ) => {
+      this.eventos = _eventos;
       this.eventosFiltrados = this.eventos
     },
     error => console.log(error)
