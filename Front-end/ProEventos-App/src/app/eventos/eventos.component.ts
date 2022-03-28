@@ -16,20 +16,20 @@ public eventosFiltrados: Evento[] = [];
 
  // ---- PROPERTY BINDING --- //
  // Definir tamanho de imagem
- public widthImg: number = 150;
+ public widthImg = 150;
  // Definir margem da imagem
- public marginImg: number = 2;
+ public marginImg = 2;
  // Mostrar imagem
- public displayImg: boolean = true;
+ public displayImg = true;
 
- private _filtroLista: string = '';
+ private FiltroListado = '';
 
  public get filtroLista(){
-   return this._filtroLista
+   return this.FiltroListado
  }
 
  public set filtroLista(value: string){
-  this._filtroLista = value;
+  this.FiltroListado = value;
   this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
 }
 
@@ -52,12 +52,12 @@ public filtrarEventos(filtrarPor: string) : Evento[] {
   }
 
   public getEventos(): void{
-    this.eventoService.getEventos().subscribe(
-    (_eventos: Evento[] ) => {
-      this.eventos = _eventos;
+    this.eventoService.getEventos().subscribe({
+    next: (eventosResp: Evento[] ) => {
+      this.eventos = eventosResp;
       this.eventosFiltrados = this.eventos
     },
-    error => console.log(error)
-    );
+    error: (error: any) => console.log(error)
+  });
   }
 }
