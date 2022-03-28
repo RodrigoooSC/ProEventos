@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { EventoService } from '../services/evento.service';
 
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.component.html',
   styleUrls: ['./eventos.component.scss']
+  // providers: [EventoService] Injetar uma classe de serviço no angular
 })
 export class EventosComponent implements OnInit {
 
@@ -35,11 +36,11 @@ filtrarEventos(filtrarPor: string) : any {
   filtrarPor = filtrarPor.toLocaleLowerCase();
   return this.eventos.filter((evento: any) => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -  1 ||
   evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -  1  ||
-  evento.dataEvento.toLocaleLowerCase().indexOf(filtrarPor) !== -  1 
+  evento.dataEvento.toLocaleLowerCase().indexOf(filtrarPor) !== -  1
   );
 }
 
-  constructor(private http: HttpClient) { }
+  constructor(private eventoService : EventoService) { }
 
   ngOnInit() {
     this.getEventos();
@@ -51,7 +52,7 @@ filtrarEventos(filtrarPor: string) : any {
   }
 
   public getEventos(): void{
-    this.http.get('https://localhost:5001/api/eventos').subscribe(
+    this.eventoService.getEventos().subscribe(
     response => {
       this.eventos = response;
       this.eventosFiltrados = this.eventos
