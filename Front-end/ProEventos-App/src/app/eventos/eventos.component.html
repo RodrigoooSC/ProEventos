@@ -1,11 +1,11 @@
 <h2>Eventos</h2>
 <hr>
 <!-- <form class="row row-cols-lg-auto g-3 align-items-center" action=""> -->
-  <div class="row row-cols-lg-auto g-3 align-items-center">    
+  <div class="row row-cols-lg-auto g-3 align-items-center">
     <div class="input-group mb-3">
       <span class="input-group-text">Filtro</span>
       <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtroLista" />
-    </div> 
+    </div>
 </div>
 <!-- </form> -->
 <!-- <h4>Filtro: {{filtroLista}}</h4> -->
@@ -37,7 +37,7 @@
         <!-- Properties Bindings -->
         <td class="text-center">
           <img class="rounded mx-auto img-thumbnail"  [collapse]="!displayImg" [isAnimated]="true"  src="/assets/{{evento.imagemURL}}" [style.width.px]="widthImg"
-            [style.margin.px]="marginImg" />            
+            [style.margin.px]="marginImg" />
         </td>
         <!-- Interpolação -->
         <td class="text-center">{{evento.id}}</td>
@@ -51,7 +51,7 @@
           <button type="button" class="btn btn-primary btn-sm" tooltip="Editar">
             <i class="fa fa-edit"></i>
           </button>
-          <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir">
+          <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
             <i class="fa fa-trash"></i>
           </button>
           </div>
@@ -68,3 +68,13 @@
     </tfoot>
   </table>
 </div>
+
+<!-- {{eventos | json}} -->
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer deletar este evento?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>

@@ -16,6 +16,7 @@ import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 // SERVICES
 import { EventoService } from './services/evento.service';
@@ -40,6 +41,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     FormsModule
   ],
   providers: [EventoService],

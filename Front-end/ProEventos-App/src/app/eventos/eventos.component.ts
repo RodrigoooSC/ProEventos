@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Evento } from '../models/Evento';
 import { EventoService } from '../services/evento.service';
 
@@ -10,6 +11,7 @@ import { EventoService } from '../services/evento.service';
 })
 export class EventosComponent implements OnInit {
 
+  modalRef?: BsModalRef;
 // Possui elementos vazios - array
 public eventos: Evento[] = [];
 public eventosFiltrados: Evento[] = [];
@@ -40,7 +42,10 @@ public filtrarEventos(filtrarPor: string) : Evento[] {
   );
 }
 
-  constructor(private eventoService : EventoService) { }
+  constructor(
+    private eventoService : EventoService,
+    private modalService: BsModalService
+    ) { }
 
   public ngOnInit(): void {
     this.getEventos();
@@ -59,5 +64,17 @@ public filtrarEventos(filtrarPor: string) : Evento[] {
     },
     error: (error: any) => console.log(error)
   });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+    this.modalRef?.hide();
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
   }
 }
