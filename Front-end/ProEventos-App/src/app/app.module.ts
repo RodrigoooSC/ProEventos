@@ -18,6 +18,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+// NGX-TROASTR
+import { ToastrModule } from 'ngx-toastr';
+
 // SERVICES
 import { EventoService } from './services/evento.service';
 
@@ -42,6 +45,12 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true
+    }),
     FormsModule
   ],
   providers: [EventoService],
