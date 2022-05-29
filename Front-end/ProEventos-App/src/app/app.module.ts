@@ -1,5 +1,5 @@
 // ANGULAR
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +20,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 // NGX-TROASTR
 import { ToastrModule } from 'ngx-toastr';
+
+// NGX-SPINNER
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 // SERVICES
 import { EventoService } from './services/evento.service';
@@ -51,9 +54,11 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
       preventDuplicates: true,
       progressBar: true
     }),
+    NgxSpinnerModule,
     FormsModule
   ],
   providers: [EventoService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
